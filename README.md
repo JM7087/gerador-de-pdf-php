@@ -67,9 +67,7 @@ Este é um sistema simples de geração de PDFs em PHP utilizando a biblioteca F
 
 O rodapé do PDF é gerado automaticamente com o seguinte formato:
 
-```
-Grupo JM7087 © Copyright 2010-[ANO ATUAL]. Todos os direitos reservados. Desenvolvido por João Marcos.
-```
+- Grupo JM7087 © Copyright 2010-[ANO ATUAL]. Todos os direitos reservados. Desenvolvido por João Marcos.
 
 O ano é gerado automaticamente com base no ano atual.
 
