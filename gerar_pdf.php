@@ -26,21 +26,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 
-    // Recupera o texto enviado pelo formulário
+    // Recupera o título, texto e alinhamento enviados pelo formulário
+    $titulo = $_POST['titulo'];
     $texto = $_POST['texto'];
+    $alinhamento = $_POST['alinhamento']; // Pode ser 'L' (esquerda), 'C' (centralizado) ou 'R' (direita)
 
     // Cria uma nova instância da classe personalizada
     $pdf = new PDF();
     $pdf->AddPage();
 
-    // Define a fonte para o corpo do PDF
+    // Define a fonte para o título e centraliza
+    $pdf->SetFont('Arial', 'B', 35);
+    $pdf->Cell(0, 20, utf8_decode($titulo), 0, 1, 'C'); // Título centralizado
+    $pdf->Ln(10); // Adiciona uma linha em branco
+
+    // Define a fonte para o texto
     $pdf->SetFont('Arial', '', 12);
 
-    // Adiciona o texto ao PDF com conversão para ISO-8859-1
-    $pdf->MultiCell(0, 10, utf8_decode($texto));
+    // Adiciona o texto ao PDF com o alinhamento escolhido
+    $pdf->MultiCell(0, 10, utf8_decode($texto), 0, $alinhamento);
 
-    // Gera codigo aleatorio
-    $horas = date("H:i:s"); 
+    // Gera código aleatório para o nome do arquivo
+    $horas = date("H:i:s");
 
     // Gera o PDF e força o download
     $pdf->Output('D', "arquivo_pdf_gerado-$horas.pdf");
